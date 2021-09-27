@@ -67,15 +67,12 @@ td, th {
 
 .footer {
     background-color: var(--primary-color);
-    padding: 2rem 1rem;
+    padding: 0.5rem 0.5rem;
     text-align: center;
     color: white;
     border-top-right-radius: 2.5rem;
     border-top-left-radius: 2.5rem;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
+
 }
 
 .footer .link {

@@ -24,7 +24,8 @@ nextButton.addEventListener("click", function validateBillAmount()  {
 checkButton.addEventListener("click", function validateCashAmount()   {
     message.style.display = "none";
     if(billAmount.value > 0 )    {
-        if (cashGiven.value >= billAmount.value)    {
+        console.log(billAmount.value,cashGiven.value );
+        if (Number(cashGiven.value) >= Number(billAmount.value))    {
             const amountToBeReturned = cashGiven.value - billAmount.value;
             if(amountToBeReturned === 0)    {
                 showMessage("Bill Amount is equal to cash amount, No change required.");
