@@ -9,46 +9,50 @@ const cashBlock = document.querySelector("#cash-block");
 
 const availableNotes = [2000, 500, 100, 20, 10, 5, 1];
 
-nextButton.addEventListener("click", function validateBillAmount()  {
-    message.style.display = "none";
-    if(billAmount.value != "" ) {
-        if(billAmount.value > 0 )    {
-            cashBlock.style.display = "flex";
-        } else  {
-            showMessage("Invalid Bill Amount");
-        }
-    }   else    {
-        showMessage("Please Enter the Bill Amount");
+nextButton.addEventListener("click", () => {
+  message.style.display = "none";
+  if (billAmount.value != "") {
+    if (billAmount.value > 0) {
+      cashBlock.style.display = "flex";
+    } else {
+      showMessage("Invalid Bill Amount");
     }
-});
-checkButton.addEventListener("click", function validateCashAmount()   {
-    message.style.display = "none";
-    if(billAmount.value > 0 )    {
-        console.log(billAmount.value,cashGiven.value );
-        if (Number(cashGiven.value) >= Number(billAmount.value))    {
-            const amountToBeReturned = cashGiven.value - billAmount.value;
-            if(amountToBeReturned === 0)    {
-                showMessage("Bill Amount is equal to cash amount, No change required.");
-            }   else{
-                calculateChange(amountToBeReturned);
-            }
-        } else  {
-            showMessage("The cash provided should atleast be equal to the bill amount");
-        }
-    } else  {
-        showMessage("Invalid Bill Amount");
-    }
+  } else {
+    showMessage("Please Enter the Bill Amount");
+  }
 });
 
-function calculateChange(amountToBeReturned)  {
-    for(let i=0; i < availableNotes.length; i++ )   {
-        const numberOfNotes = Math.trunc(amountToBeReturned/availableNotes[i]);
-        amountToBeReturned %= availableNotes[i];
-        noOfNotes[i].innerText = numberOfNotes;
+checkButton.addEventListener("click", () => {
+  message.style.display = "none";
+  if (billAmount.value > 0) {
+    console.log(billAmount.value, cashGiven.value);
+    if (Number(cashGiven.value) >= Number(billAmount.value)) {
+      const amountToBeReturned = cashGiven.value - billAmount.value;
+      if (amountToBeReturned === 0) {
+        showMessage("Bill Amount is equal to cash amount, No change required.");
+      } else {
+        calculateChange(amountToBeReturned);
+      }
+    } else {
+      showMessage(
+        "The cash provided should atleast be equal to the bill amount"
+      );
     }
-    changeBlock.style.display = "flex";
-}
-function showMessage(innermessage)  {
-    message.style.display = "block";
-    message.innerText = innermessage;
-}
+  } else {
+    showMessage("Invalid Bill Amount");
+  }
+});
+
+const calculateChange = (amountToBeReturned) => {
+  for (let i = 0; i < availableNotes.length; i++) {
+    const numberOfNotes = Math.trunc(amountToBeReturned / availableNotes[i]);
+    amountToBeReturned %= availableNotes[i];
+    noOfNotes[i].innerText = numberOfNotes;
+  }
+  changeBlock.style.display = "flex";
+};
+
+const showMessage = (innermessage) => {
+  message.style.display = "block";
+  message.innerText = innermessage;
+};
